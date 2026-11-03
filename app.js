@@ -52,6 +52,17 @@ const P = {
   send: "M3 11l18-8-8 18-2-8-8-2z",
   cal: "M4 6h16v14H4zM4 10h16M8 3v4M16 3v4",
   tag: "M3 12V4h8l10 10-8 8L3 12zM7.5 8.5h.01",
+  list: "M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01",
+  users: "M9 11a3.5 3.5 0 100-7 3.5 3.5 0 000 7zM2.5 20c0-3.5 2.8-5.5 6.5-5.5s6.5 2 6.5 5.5M16 4.5a3.5 3.5 0 010 6.5M18 14.8c2 .6 3.5 2.2 3.5 5.2",
+  edit: "M4 20h4L19 9l-4-4L4 16v4zM13.5 6.5l4 4",
+  trash: "M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6",
+  phone: "M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z",
+  trend: "M3 17l6-6 4 4 8-8M15 7h6v6",
+  camera: "M4 8h4l2-3h4l2 3h4v11H4zM12 17a3.5 3.5 0 100-7 3.5 3.5 0 000 7z",
+  pause: "M8 5v14M16 5v14",
+  play: "M7 4l13 8-13 8z",
+  wallet: "M3 7h16a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V7zM3 7l12-3v3M16 14h.01",
+  swap: "M7 4L3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7",
 };
 const ic = (n, cls = "", w = 1.7) =>
   `<svg class="${cls}" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${P[n]}"/></svg>`;
@@ -81,6 +92,95 @@ function sceneSVG(n) {
   const person = (x, s, shirt) => `<g transform="translate(${x} 0) scale(${s})" transform-origin="200 340"><path d="M110 360c0-60 40-96 90-96s90 36 90 96z" fill="${shirt}"/><circle cx="200" cy="200" r="46" fill="#7a4a2c"/><path d="M154 192c0-34 22-54 46-54s46 20 46 54c-14-12-28-18-46-18s-32 6-46 18z" fill="#1b1b1b"/><rect x="184" y="238" width="32" height="30" fill="#7a4a2c"/></g>`;
   if (n === 0) return `<svg viewBox="0 0 400 360" preserveAspectRatio="xMidYMax meet" aria-hidden="true">${base}${bld}<path d="M52 92l28 12v26c0 20-14 32-28 38-14-6-28-18-28-38v-26z" fill="none" stroke="#2f8f63" stroke-width="5"/><path d="M40 134l9 9 17-20" fill="none" stroke="#2f8f63" stroke-width="5" stroke-linecap="round"/><path d="M128 100a22 22 0 0144 0c0 22-22 40-22 40s-22-18-22-40z" fill="none" stroke="#2f8f63" stroke-width="5"/><circle cx="150" cy="100" r="8" fill="none" stroke="#2f8f63" stroke-width="5"/>${person(130, 0.95, "#2f9a4a")}<rect x="236" y="226" width="40" height="64" rx="8" fill="#1f2937" transform="rotate(-18 256 258)"/></svg>`;
   if (n === 1) return `<svg viewBox="0 0 400 360" preserveAspectRatio="xMidYMax meet" aria-hidden="true">${base}<rect x="40" y="130" width="130" height="210" fill="#f1f5f3"/><rect x="40" y="130" width="130" height="14" fill="#2f8f63"/>${[0, 1, 2, 3, 4].map((r) => `<rect x="${64}" y="${160 + r * 34}" width="26" height="20" fill="#2f8f63" opacity=".85"/><rect x="${112}" y="${160 + r * 34}" width="26" height="20" fill="#2f8f63" opacity=".85"/>`).join("")}<rect x="215" y="62" width="130" height="150" rx="10" fill="#fff" stroke="#2f8f63" stroke-width="4"/><path d="M235 100l12 12 22-26" fill="none" stroke="#2f8f63" stroke-width="6" stroke-linecap="round"/><rect x="278" y="96" width="50" height="8" rx="4" fill="#cfe7db"/><path d="M235 148l12 12 22-26" fill="none" stroke="#2f8f63" stroke-width="6" stroke-linecap="round"/><rect x="278" y="144" width="50" height="8" rx="4" fill="#cfe7db"/>${person(120, 0.8, "#f08a00")}</svg>`;
+  return `<svg viewBox="0 0 400 360" preserveAspectRatio="xMidYMax meet" aria-hidden="true">${base}${person(-30, 0.62, "#2f9a4a")}${person(160, 0.62, "#1f2937")}${person(70, 0.8, "#f08a00")}${[60, 200, 320].map((x, i) => `<path d="M${x} 70l7 14 15 2-11 10 3 15-14-8-14 8 3-15-11-10 15-2z" fill="#f59e0b"/>`).join("")}</svg>`;
+}
+
+/* ============================ data ============================ */
+const LISTINGS = [
+  { id: 1, title: "Self Contain", area: "Obio Akpa, Abak", price: 180000, mins: 10, match: 92, beds: 1, showers: 1, rating: 4.6, nrev: 12, landlord: "Mr. Sunday Eno", verified: true, isNew: false, water: "Good", transport: "Easy", security: "High", about: "A student-friendly apartment with steady water supply, good road access and close to campus.", walk: "5 mins to AKSU" },
+  { id: 2, title: "Self Contain", area: "Ikot Udo Idem", price: 200000, mins: 3, match: 94, beds: 1, showers: 1, rating: 4.6, nrev: 12, landlord: "Grace Apartments", verified: true, isNew: true, water: "Great", transport: "Very Easy", security: "High", about: "Bright, student-ready apartment with reliable water, easy road access, and just minutes from campus.", walk: "3 mins to AKSU" },
+  { id: 3, title: "3 Bedroom Flat", area: "Obio Akpa", price: 450000, mins: 20, match: 93, beds: 3, showers: 2, rating: 4.4, nrev: 8, landlord: "Akpan Houses", verified: false, isNew: false, water: "Good", transport: "Easy", security: "Medium", about: "Spacious three bedroom flat that works well for students sharing the rent, with parking and a quiet compound.", walk: "20 mins to AKSU" },
+  { id: 4, title: "Self Contain", area: "Udo Idiong Street", price: 200000, mins: 8, match: 95, beds: 1, showers: 1, rating: 4.7, nrev: 9, landlord: "Mr. Frank Ekong", verified: true, isNew: true, water: "Good", transport: "Easy", security: "High", about: "Neat self contain on a calm street with a gated compound and a short ride to the school gate.", walk: "8 mins to AKSU" },
+  { id: 5, title: "Self Contain", area: "Obio Ibiet", price: 180000, mins: 5, match: 92, beds: 1, showers: 1, rating: 4.3, nrev: 6, landlord: "Mr. Ekemini Nyot", verified: false, isNew: false, water: "Good", transport: "Easy", security: "Medium", about: "Affordable self contain close to the campus road, with a tiled bathroom and good ventilation.", walk: "5 mins to AKSU" },
+];
+const REVIEWS_A = [
+  ["Uduak Johnson", "“Perfect for students: clean rooms, strong security, and just a short walk to campus.”", 4.5, "1 Week ago"],
+  ["Ubong Akpabio", "“Reliable utilities and friendly management, we never missed a day of water. Great study environment.”", 4.0, "2 Weeks ago"],
+  ["Edidiong Ufot", "“Friendly student community, clean facilities, and dependable services — highly recommended.”", 4.7, "1 Week ago"],
+  ["Akaninyene Iwok", "“Good value for students: well-maintained, secure, and consistently available utilities.”", 4.6, "3 Weeks ago"],
+  ["Udim Johnson", "“Modern rooms, study-friendly atmosphere, and consistent water and Free weekend Wi‑Fi.”", 4.4, "1 Week ago"],
+  ["Eduwem Enwongo", "“Well secured, Modern facilities, constant energy supply during weekends and a conducive environment.”", 4.2, "1 month ago"],
+  ["Ediomo Akpan", "“I lived here during my second year. the place was always clean, the building felt safe with 24/7 guards.”", 4.8, "4 months ago"],
+];
+const REVIEWS_B = [
+  ["Ime Micah", "“Perfect spot for uni life. I could walk to class in 10 minutes. Constant water supply meant less stress.”", 4.5, "1 Week ago"],
+  ["Mfon Eduek", "“Moved in at the start of the semester and haven’t regretted it. Landlord fixes things fast.”", 4.0, "2 Weeks ago"],
+  ["Endiong Jumbo", "“No water interruptions, a huge relief for students. Main road outside makes getting to campus simple and quick.”", 4.7, "1 Week ago"],
+  ["Mmeyene Usen", "“Affordable, comfortable, and convenient student housing. Dependable water and smooth road access.”", 4.6, "3 Weeks ago"],
+  ["Aniefiok Archibong", "“Modern rooms, study-friendly atmosphere, and consistent water.”", 4.4, "1 Week ago"],
+  ["Idara Udim", "“Well secured, Modern facilities, constant energy supply during weekends and a conducive environment.”", 4.2, "1 month ago"],
+  ["Nyakno Dan", "“I lived here during my second year. the place was always clean, the building felt safe with 24/7 guards.”", 4.8, "4 months ago"],
+  ["Ndifreke Ukeme", "“Absolutely loved living here, the water never ran out, which was a lifesaver during exam season. Quick drive to campus. Quiet building, helpful landlord, and great value for students.”", 4.8, "4 months ago"],
+];
+const reviewsFor = (id) => (id >= 1000 ? [] : id === 1 ? REVIEWS_A : id === 2 ? REVIEWS_B : (id % 2 ? REVIEWS_A : REVIEWS_B).slice(0, 3 + (id % 3)));
+const CONTACTS = [
+  { id: "sunday", name: "Mr. Sunday Eno", listing: 1, when: "10:32 AM" },
+  { id: "grace", name: "Grace Apartments", listing: 2, when: "Yesterday" },
+  { id: "akpan", name: "Akpan Houses", listing: 3, when: "Yesterday" },
+  { id: "idiong", name: "Mr. Akpakpan Idiong", listing: 1, when: "2 days ago" },
+  { id: "nyot", name: "Mr. Ekemini Nyot", listing: 5, when: "2 days ago" },
+  { id: "ekong", name: "Mr. Frank Ekong", listing: 4, when: "3 days ago" },
+  { id: "alpha", name: "Alpha Apartments", listing: 1, when: "3 days ago" },
+];
+const SEED_MSGS = () => [
+  { f: "me", t: "Hello, I’m interested in this property.", at: "10:30 AM" },
+  { f: "them", t: "Hello, it’s still available. Would you like to book an inspection?", at: "10:32 AM" },
+  { f: "me", t: "Yes, definitely.", at: "10:30 AM" },
+];
+const ROLES = [
+  { id: "student", title: "Accommodation Seeker", sub: "Find verified homes and avoid scams", art: personSVG("#7a4a2c", "#7bb36b", "#e3f3e8") },
+  { id: "landlord", title: "Landlord/ Property owner", sub: "List and manage your properties", art: personSVG("#6b3f26", "#5c7a3a", "#f3efe2") },
+  { id: "agent", title: "Agent/Property Manager", sub: "Connect verified listings with seekers", art: personSVG("#7a4a2c", "#23543d", "#dfeee6") },
+];
+const ISSUES = ["Fake Listing", "Fake Agent", "Wrong Photos", "Already Occupied", "Payment Scam", "Wrong Location"];
+const FAQ = [
+  ["How are landlords verified?", "Landlords with a green shield have had their identity and property details checked. Always inspect a property before paying anything."],
+  ["Should I pay before inspecting?", "No. Never pay before you have physically inspected the property. If someone asks you to, use Report Scam on the listing."],
+  ["How do I book an inspection?", "Open a listing, tap Book Inspection, pick a date and time, then confirm. You’ll find it under My Bookings in your profile."],
+  ["What happens after I report a scam?", "Our team reviews the report, which can take 12–24 hours, and you’ll be notified once it’s done."],
+  ["Can I change my role?", "Yes. Go to Profile → Settings and choose a different role at any time."],
+];
+
+/* ============================ state ============================ */
+const KEY = "awahome:v1";
+const defaults = () => ({
+  loggedIn: false, onboarded: false, role: null,
+  user: { name: "Iniobong Akpan", email: "" },
+  saved: [], bookings: [], reports: [], blocked: [],
+  chats: { sunday: SEED_MSGS() }, unread: { sunday: 1 },
+  settings: { notifs: true, dark: false }, notifSeen: false,
+  pro: null, requests: [], enq: [], ounread: {},
+  owner: { verify: "none", phone: "", submitted: 0, listings: [], clients: [], activity: [0, 0, 0, 0, 0, 0, 0], actDay: "", sample: false },
+});
+let S;
+try { S = Object.assign(defaults(), JSON.parse(localStorage.getItem(KEY) || "{}")); } catch { S = defaults(); }
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); return true; } catch { return false; } };
+const applyTheme = () => document.documentElement.setAttribute("data-theme", S.settings.dark ? "dark" : "light");
+applyTheme();
+const firstName = () => S.user.name.split(" ")[0];
+
+/* ---- landlord & agent: shared helpers ---- */
+S.owner = Object.assign(defaults().owner, S.owner || {});
+const isOwner = () => S.role === "landlord" || S.role === "agent";
+const isAgent = () => S.role === "agent";
+const homePath = () => (isOwner() ? "/dash" : "/home");
+const refresh = () => route();
+const ics = (n, s = 18, w = 1.8) => ic(n, "", w).replace('width="24" height="24"', `width="${s}" height="${s}"`);
+const verifiedNow = () => S.owner.verify === "verified";
+const setRole = (r) => { S.role = r; if (r !== "student") S.pro = r; save(); };
+function hydrateOwned(l) {
+  const photos = l.photos || [];
+  return { ...l, owned: true, verified: verifiedNow(), match: Math.min(97, 84 + Math.min(4, photos.length> `<rect x="${64}" y="${160 + r * 34}" width="26" height="20" fill="#2f8f63" opacity=".85"/><rect x="${112}" y="${160 + r * 34}" width="26" height="20" fill="#2f8f63" opacity=".85"/>`).join("")}<rect x="215" y="62" width="130" height="150" rx="10" fill="#fff" stroke="#2f8f63" stroke-width="4"/><path d="M235 100l12 12 22-26" fill="none" stroke="#2f8f63" stroke-width="6" stroke-linecap="round"/><rect x="278" y="96" width="50" height="8" rx="4" fill="#cfe7db"/><path d="M235 148l12 12 22-26" fill="none" stroke="#2f8f63" stroke-width="6" stroke-linecap="round"/><rect x="278" y="144" width="50" height="8" rx="4" fill="#cfe7db"/>${person(120, 0.8, "#f08a00")}</svg>`;
   return `<svg viewBox="0 0 400 360" preserveAspectRatio="xMidYMax meet" aria-hidden="true">${base}${person(-30, 0.62, "#2f9a4a")}${person(160, 0.62, "#1f2937")}${person(70, 0.8, "#f08a00")}${[60, 200, 320].map((x, i) => `<path d="M${x} 70l7 14 15 2-11 10 3 15-14-8-14 8 3-15-11-10 15-2z" fill="#f59e0b"/>`).join("")}</svg>`;
 }
 
